@@ -1,39 +1,42 @@
-import React, { Fragment, useEffect, useState } from "react";
-import MetaData from "../../more/Metadata";
-import { Link } from "react-router-dom";
-import { Typography } from "@material-ui/core";
-import SideBar from "./Sidebar";
+import React, { Fragment, useEffect, useState } from 'react';
+import MetaData from '../../more/Metadata';
+import { Link } from 'react-router-dom';
+import { Typography } from '@material-ui/core';
+import SideBar from './Sidebar';
 import {
   getOrderDetails,
   clearErrors,
   updateOrder,
-} from "../../actions/OrderAction";
-import { useSelector, useDispatch } from "react-redux";
-import Loading from "../../more/Loader";
-import AccountTreeIcon from "@material-ui/icons/AccountTree";
-import { Button } from "@material-ui/core";
-import { UPDATE_ORDER_RESET } from "../../constans/OrderConstans";
-import "./UpdateOrder.css";
+} from '../../actions/OrderAction';
+import { useSelector, useDispatch } from 'react-redux';
+import Loading from '../../more/Loader';
+import AccountTreeIcon from '@material-ui/icons/AccountTree';
+import { Button } from '@material-ui/core';
+import { UPDATE_ORDER_RESET } from '../../constans/OrderConstans';
+import './UpdateOrder.css';
 import { ToastContainer, toast } from 'react-toastify';
 
-
 const UpdateOrder = ({ history, match }) => {
-  const { order, error, loading } = useSelector((state) => state.myOrderDetails);
-  const { error: updateError, isUpdated } = useSelector((state) => state.deleteOrder);
+  const { order, error, loading } = useSelector(
+    (state) => state.myOrderDetails
+  );
+  const { error: updateError, isUpdated } = useSelector(
+    (state) => state.deleteOrder
+  );
 
   const updateOrderSubmitHandler = (e) => {
     e.preventDefault();
 
     const myForm = new FormData();
 
-    myForm.set("status", status);
+    myForm.set('status', status);
 
     dispatch(updateOrder(match.params.id, myForm));
   };
 
   const dispatch = useDispatch();
 
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState('');
 
   useEffect(() => {
     if (error) {
@@ -45,7 +48,7 @@ const UpdateOrder = ({ history, match }) => {
       dispatch(clearErrors());
     }
     if (isUpdated) {
-      toast.success("Order Updated Successfully");
+      toast.success('Order Updated Successfully');
       dispatch({ type: UPDATE_ORDER_RESET });
     }
 
@@ -64,10 +67,10 @@ const UpdateOrder = ({ history, match }) => {
             <div
               className="confirmOrderPage"
               style={{
-                display: order.orderStatus === "Delivered" ? "block" : "grid",
+                display: order.orderStatus === 'Delivered' ? 'block' : 'grid',
               }}
             >
-              <div>
+              <div className="dashboard-order">
                 <div className="confirmshippingArea">
                   <Typography>Shipping Info</Typography>
                   <div className="orderDetailsContainerBox">
@@ -93,16 +96,18 @@ const UpdateOrder = ({ history, match }) => {
                   <Typography>Payment</Typography>
                   <div className="orderDetailsContainerBox">
                     <div>
-                      <p style={{
-                          color:"green"
-                      }}>
+                      <p
+                        style={{
+                          color: 'green',
+                        }}
+                      >
                         PAID
                       </p>
                     </div>
 
                     <div>
                       <p>Amount:</p>
-                      <span>${order.totalPrice && order.totalPrice}</span>
+                      <span>Rs.{order.totalPrice && order.totalPrice}</span>
                     </div>
                   </div>
 
@@ -111,18 +116,17 @@ const UpdateOrder = ({ history, match }) => {
                     <div>
                       <p
                         className={
-                          order.orderStatus && order.orderStatus === "Delivered"
-                            ? "greenColor"
-                            : "redColor"
+                          order.orderStatus && order.orderStatus === 'Delivered'
+                            ? 'greenColor'
+                            : 'redColor'
                         }
                       >
                         {order.orderStatus && order.orderStatus}
                       </p>
                     </div>
                   </div>
-                </div>
-                <div className="confirmCartItems">
-                  <Typography>Your Cart Items:</Typography>
+
+                  <Typography>Cart Items:</Typography>
                   <div className="confirmCartItemsContainer">
                     {order.orderItems &&
                       order.orderItems.map((item) => (
@@ -130,10 +134,10 @@ const UpdateOrder = ({ history, match }) => {
                           <img src={item.image} alt="Product" />
                           <Link to={`/product/${item.product}`}>
                             {item.name}
-                          </Link>{" "}
+                          </Link>{' '}
                           <span>
-                            {item.quantity} X ${item.price} ={" "}
-                            <b>${item.price * item.quantity}</b>
+                            {item.quantity} X Rs.{item.price} ={' '}
+                            <b>Rs.{item.price * item.quantity}</b>
                           </span>
                         </div>
                       ))}
@@ -143,7 +147,7 @@ const UpdateOrder = ({ history, match }) => {
               {/*  */}
               <div
                 style={{
-                  display: order.orderStatus === "Delivered" ? "none" : "block",
+                  display: order.orderStatus === 'Delivered' ? 'none' : 'block',
                 }}
               >
                 <form
@@ -156,11 +160,11 @@ const UpdateOrder = ({ history, match }) => {
                     <AccountTreeIcon />
                     <select onChange={(e) => setStatus(e.target.value)}>
                       <option value="">Choose Category</option>
-                      {order.orderStatus === "Processing" && (
-                        <option value="Shipped">Shipped</option>
+                      {order.orderStatus === 'Processing' && (
+                        <option value="Shipped">delivered</option>
                       )}
 
-                      {order.orderStatus === "Shipped" && (
+                      {order.orderStatus === 'Shipped' && (
                         <option value="Delivered">Delivered</option>
                       )}
                     </select>
@@ -170,7 +174,7 @@ const UpdateOrder = ({ history, match }) => {
                     id="createProductBtn"
                     type="submit"
                     disabled={
-                      loading ? true : false || status === "" ? true : false
+                      loading ? true : false || status === '' ? true : false
                     }
                   >
                     Process
@@ -181,7 +185,7 @@ const UpdateOrder = ({ history, match }) => {
           )}
         </div>
       </div>
-      <ToastContainer 
+      <ToastContainer
         position="bottom-center"
         autoClose={5000}
         hideProgressBar={false}
@@ -191,7 +195,7 @@ const UpdateOrder = ({ history, match }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        />
+      />
     </Fragment>
   );
 };

@@ -112,7 +112,7 @@ const Home = () => {
                     paddingTop: '10px',
                   }}
                 >
-                  Get Free Shipping on all orders over $99.00
+                  Get Free Delivery charge on all orders over RS.999.00
                 </h2>
               </div>
               <div>

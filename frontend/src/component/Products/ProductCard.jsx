@@ -36,7 +36,7 @@ const ProductCard = ({ product }) => {
                 textAlign: 'center',
               }}
             >
-              {product.offerPrice > 0 ? `Rs.${product.offerPrice}` : ''}
+              {product.offerPrice > 0 ? `${product.offerPrice}% off` : ''}
             </h1>
             <span
               className="p__Price"

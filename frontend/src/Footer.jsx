@@ -8,7 +8,7 @@ const Footer = () => {
       className="Footer flex space__around pz__15"
       style={{
         borderTop: '.3px solid rgba(21,21,21,0.5)',
-        backgroundColor: '',
+        backgroundColor: '#b4ff9f',
       }}
     >
       {/* Footer 1st part */}

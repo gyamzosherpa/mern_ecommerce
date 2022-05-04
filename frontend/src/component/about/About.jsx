@@ -6,7 +6,7 @@ import Loading from '../../more/Loader';
 import MetaData from '../../more/Metadata';
 import './About.css';
 import BottomTab from '../../more/BottomTab';
-
+import gaming from '../../Assets/gaming.jpeg';
 const About = () => {
   const { loading } = useSelector((state) => state.profile);
   return (
@@ -20,18 +20,15 @@ const About = () => {
             <Header />
             <div
               style={{
-                width: '90%',
-                margin: '0px auto',
+                width: '100%',
+                margin: '10px 10px',
               }}
             >
               <div className="about__page">
                 {/* 1st verse */}
                 <div className="row flex">
                   <div className="col__2">
-                    <img
-                      src="http://wp.alithemes.com/html/nest/demo/assets/imgs/page/about-1.png"
-                      alt=""
-                    />
+                    <img src={gaming} alt="" width={400} height={200} />
                   </div>
                   <div className="col__2">
                     <div className="meta">
@@ -42,7 +39,7 @@ const About = () => {
                           lineHeight: '1.2',
                         }}
                       >
-                        Welcome to Nest
+                        Welcome to Game Estore
                       </span>
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,

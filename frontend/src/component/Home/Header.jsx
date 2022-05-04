@@ -112,22 +112,20 @@ const Header = () => {
             }}
           >
             <Link to="/">
-              <li>Home</li>
+              <li className="header_hover">Home</li>
             </Link>
             <Link to="/about">
-              <li>About</li>
+              <li className="header_hover">About</li>
             </Link>
             <Link to="/Products">
-              <li>Products</li>
+              <li className="header_hover">Products</li>
             </Link>
-            <Link to="/creator">
-              <li>Become A Seller</li>
-            </Link>
+
             <Link to="/faq">
-              <li>Users Rules</li>
+              <li className="header_hover">Guidelines</li>
             </Link>
             <Link to="/contact">
-              <li>Contact</li>
+              <li className="header_hover">Contact</li>
             </Link>
           </ul>
         </div>
